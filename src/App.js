@@ -1,41 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import axios from 'axios'
+import {withRouter} from "react-router-dom"
 
+import { connect } from "react-redux"
+
+import { retrieveUser } from "./ducks/user"
 import routes from './routes';
 
 
 class App extends Component {
-  constructor(props){
-    super(props)
+  
+    componentDidMount() {
+        this.props.retrieveUser();
+      }
 
-      this.state = {
-      test: null
-    }
-}
-componentDidMount(){
-  axios
-    .get('/api/me')
-    .then(response => {
-      console.log(response)
-      this.setState({ test: response.data.displayname })
-    })
-    .catch(console.log);
-}
-
-
+ 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title"> Event Finder </h1>
         </header>
         {routes}
       </div>
     );
   }
 }
+function mapStateToProps(user){
+  return{
+    user
+  };
+}
 
-export default App;
+
+export default withRouter(connect(mapStateToProps, { retrieveUser })(App))

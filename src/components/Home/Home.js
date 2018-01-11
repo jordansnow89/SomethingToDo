@@ -31,6 +31,13 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+function mapStateToProps( state ){
+  return{
+    user: {},
+    isLoading: false,
+    didError: false
+  };
+
+}
 
 export default connect(mapStateToProps, { retrieveUser })(Home);

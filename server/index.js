@@ -7,6 +7,8 @@ const massive = require("massive");
 const passport = require("passport")
 const Auth0Strategy = require("passport-auth0")
 
+const eventController = require("./controllers/eventController");
+
 const {
     AUTH_DOMAIN,
     CLIENT_SECRET,
@@ -46,25 +48,25 @@ passport.use(
         clientSecret: CLIENT_SECRET,
         clientID: CLIENT_ID,
         callbackURL: "/auth",
-        scope: "profile openid"
+        scope: "openid profile"
       },
       (accessToken, refreshToken, extraParams, profile, done) => {
-        // app
-        //   .get("db")
-        //   .getUserByAuthid(profile.id)
-        //   .then(response => {
-        //     if (!response[0]) {
-        //       app
-        //         .get("db")
-        //         .createUserByAuthid([profile.id, profile.displayName])
-        //         .then(created => {
-        //           return done(null, created[0]);
-        //         });
-        //     } else {
-        //       return done(null, response[0]);
-        //     }
-        //   });
-        return done(null, profile);
+        console.log(profile)
+        app
+          .get("db")
+          .getUserByAuthid(profile.id)
+          .then(response => {
+            if (!response[0]) {
+              app
+                .get("db")
+                .createUserByAuthid([profile.id, profile.displayName,])
+                .then(created => {
+                  return done(null, created[0]);
+                });
+            } else {
+              return done(null, response[0]);
+            }
+          });
       }
     )
   );
@@ -72,14 +74,15 @@ passport.use(
   passport.serializeUser((user, done) => done(null, user));
   passport.deserializeUser((user, done) => done(null, user));
 
+
 app.get('/auth', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/',
+    successRedirect: 'http://localhost:3000/Profile',
     failureRedirect: 'http://localhost:3000/auth'
     }));
 
 app.get('/api/me', (req, res, next) => {console.log(req.sessionID)
 
-        if (req.user) res.json(req.user);
+        if (req.user)  res.json(req.user) ;
         else res.json("User is not logged in")
     });
     
@@ -90,7 +93,8 @@ app.get('/api/me', (req, res, next) => {console.log(req.sessionID)
 
 // }
 // }
-    
+app.get("/api/getEventData", eventController.getEventData);
+
     app.get("/api/test", (req, res) => {
         const db = app.get("db");
       
@@ -104,5 +108,5 @@ app.get('/api/me', (req, res, next) => {console.log(req.sessionID)
       });
 
 app.listen(PORT || 3001, () => {
-    console.log(`I am listening on port ${PORT||3001}`)
+    console.log(`I am watching and waiting on ${PORT||3001}`)
 })
