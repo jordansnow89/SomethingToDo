@@ -3,12 +3,13 @@ import axios from "axios"
 const RETRIEVE_EVENTS = "RETRIEVE_EVENTS";
 
 
-export function retrieveEvents() {
+export function retrieveEvents(city) {
     return {
       type: RETRIEVE_EVENTS,
       payload: axios
-        .get("/api/getEventData")
+        .get(`/api/getEventData?city=${city}`)
         .then(response => {
+          console.log(response)
            return response.data})
         .catch(console.log)
     };
@@ -30,7 +31,6 @@ const initialState = {
         return Object.assign({}, state, { isLoading: true });
   
       case `${RETRIEVE_EVENTS}_FULFILLED`:
-        console.log(action.payload)
         return Object.assign({}, state, {
           isLoading: false,
           events: action.payload

@@ -1,17 +1,40 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import axios from "axios"
+
 
 import { retrieveEvents } from "../../ducks/event";
 
 class Search extends Component {
+    constructor(props){
+        super(props)
 
-    componentDidMount() {
-        this.props.retrieveEvents();
+        this.state = {
+            searchTerm: ""
+        }
+
+        this.handleSearch = this.handleSearch.bind(this)
+        this.addToProfile = this.addToProfile.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+
+
+    handleSearch() {
+        this.props.retrieveEvents(this.state.searchTerm);
       }
 
+    addToProfile() {
+
+      }
+
+      handleChange(val) {
+        this.setState({
+             searchTerm: val 
+        })
+      }
+
+
 render() {
-    console.log(this.props);
     return(
         <div>
             <h1> Search Page </h1>
@@ -20,11 +43,12 @@ render() {
             <h1>Loading Content....</h1>
           </div>
         )}
-            <div className="searchbox">
-            {this.props.events.events && this.props.events.events.map(event => {
-                return <div>{event.name.text}
-                    </div>
-            })}
+        <input type="text" onChange={e => this.handleChange(e.target.value)} />
+        <button type="submit" onClick={() => this.handleSearch()}> SEARCH </button>
+            <div className="searchbox" >
+            {this.props.events.events && this.props.events.events.map((event, index) =>
+                 ( <div key={index}>{event.name.text} <button> ADD </button> </div> )
+            )}
             </div>
 
         </div>
