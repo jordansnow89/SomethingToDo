@@ -94,6 +94,7 @@ app.get('/api/me', (req, res, next) => {console.log(req.sessionID)
 // }
 // }
 app.get("/api/getEventData", eventController.getEventData);
+app.put("/api/addEventToProfile", eventController.addEventToProfile);
 
     app.get("/api/test", (req, res) => {
         const db = app.get("db");

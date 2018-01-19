@@ -9,5 +9,27 @@ module.exports = {
         .then(results => { 
             res.json(results.data) } )
         .catch(error => console.log (error))
-    }
+    },
+
+    addEventToProfile: ( req, res ) => {
+    const { userid, eventData } = req.body
+    const { name, start, category_id,  description  , logo , is_free } = eventData;
+    const { url } = logo;
+    const { local } = start;
+    const eventName = name.text;
+    const eventDescription = description.text
+
+    req.app
+        .get("db")
+        .addUserEvent([userid, eventName , local , category_id , eventDescription,  url , is_free ])
+        .then(response => {
+          return res.status(200).json(response);
+        });
+
+        
+    } 
+
+
+
+
 }

@@ -17,11 +17,12 @@ export function retrieveUser() {
   return {
     type: RETRIEVE_USER,
     payload: axios
-      .get("/api/me")
-      .then(response => response.data)
-      .catch(console.log)
-  };
+    .get("/api/me")
+    .then(response => response.data)
+    .catch(console.log)
+};
 }
+
 
 const initialState = {
   user: {},

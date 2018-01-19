@@ -1,6 +1,7 @@
 import axios from "axios"
 
 const RETRIEVE_EVENTS = "RETRIEVE_EVENTS";
+const ADD_EVENT_TO_PROFILE = "ADD_EVENT_TO_PROFILE"
 
 
 export function retrieveEvents(city) {
@@ -14,12 +15,23 @@ export function retrieveEvents(city) {
         .catch(console.log)
     };
   }
+
+  export function addEventToProfile(userid, eventData) {
+    return {
+      type: ADD_EVENT_TO_PROFILE,
+      payload: axios
+        .put("/api/addEventToProfile", { userid, eventData })
+        .then( response => response.data )
+        .catch(console.log)
+    }
+  }
   
 
 
 
 const initialState = {
    events: {},
+   userEvents: {},
    isLoading: false,
    didError: false
   };
@@ -40,6 +52,10 @@ const initialState = {
         return Object.assign({}, state, {
           isLoading: false,
           didError: true
+        });
+
+      case `${ADD_EVENT_TO_PROFILE}_FULFILLED`:
+        return Object.assign({}, state, {
         });
   
   
