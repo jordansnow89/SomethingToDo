@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const RETRIEVE_USER = "RETRIEVE_USER";
-const UPDATE_NAME = "UPDATE_NAME";
+const UPDATE_PROFILE = "UPDATE_PROFILE";
 
-export function updateUsername(username, id) {
+export function updateProfile(updatedUser, userid) {
   return {
-    type: UPDATE_NAME,
+    type: UPDATE_PROFILE,
     payload: axios
-      .put("/api/name", { username, id })
+      .put("/api/update", {updatedUser, userid  })
       .then(response => response.data)
       .catch(console.log)
   };
@@ -47,8 +47,9 @@ export default function userReducer(state = initialState, action) {
         didError: true
       });
 
-    case `${UPDATE_NAME}_FULFILLED`:
-      return Object.assign({}, state, { user: action.payload });
+    case `${UPDATE_PROFILE}_FULFILLED`:
+      return Object.assign({}, state, {
+         user: action.payload });
 
     default:
       return state;

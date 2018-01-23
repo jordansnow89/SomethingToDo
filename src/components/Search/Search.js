@@ -11,32 +11,16 @@ class Search extends Component {
         super(props)
 
         this.state = {
-            searchTerm: ""
         }
 
-        this.handleSearch = this.handleSearch.bind(this)
         this.handleAdd = this.handleAdd.bind(this)
-        this.handleChange = this.handleChange.bind(this)
         this.handleAlert = this.handleAlert.bind(this)
     }
-
-
-
-    handleSearch(event) {
-        event.preventDefault();
-        this.props.retrieveEvents(this.state.searchTerm);
-      }
 
     handleAdd(val) {
         const userid = this.props.user.user.userid
         this.props.addEventToProfile( userid , val);
     }
-
-    handleChange(val) {
-        this.setState({
-             searchTerm: val 
-        })
-      }
 
     handleAlert(){
         alert("Please log in to add events")
@@ -47,7 +31,6 @@ const eventList = this.props.events.events.events
     console.log(this.props)
     return(
         <div>
-            <h1> Search Page </h1>
             {this.props.events.isLoading && (
           <div>
             <h1>Loading Content....</h1>
@@ -57,11 +40,8 @@ const eventList = this.props.events.events.events
         <Filter />
         <br/>
 
-        <form onSubmit={this.handleSearch}>
-            <input placeholder="City State or Zipcode"  onChange={e => this.handleChange(e.target.value)} />
-            <button> SEARCH </button>
-        </form>
-            <div className="searchbox" >
+       
+            <div >
                 {eventList && eventList.map((event, index) =>
                  ( <div key={index}>
                 <div> EVENT NAME: {event.name.text} </div>

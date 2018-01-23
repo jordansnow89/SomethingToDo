@@ -8,6 +8,7 @@ const passport = require("passport")
 const Auth0Strategy = require("passport-auth0")
 
 const eventController = require("./controllers/eventController");
+const userController= require("./controllers/userControler");
 
 const {
     AUTH_DOMAIN,
@@ -59,7 +60,7 @@ passport.use(
             if (!response[0]) {
               app
                 .get("db")
-                .createUserByAuthid([profile.id, profile.displayName,])
+                .createUserByAuthid([profile.id, profile.displayName, profile.picture])
                 .then(created => {
                   return done(null, created[0]);
                 });
@@ -76,7 +77,7 @@ passport.use(
 
 
 app.get('/auth', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/Profile',
+    successRedirect: `http://localhost:3000/Profile/`,
     failureRedirect: 'http://localhost:3000/auth'
     }));
 
@@ -90,9 +91,11 @@ app.get('/api/me', (req, res, next) => {console.log(req.sessionID)
 //controller 
 // module.exports ={
 // getPerson: (req,res) => {
+// }
+// }
+app.put('/api/update', userController.updateProfile)
 
-// }
-// }
+
 app.get("/api/getEventData", eventController.getEventData);
 app.put("/api/addEventToProfile", eventController.addEventToProfile);
 

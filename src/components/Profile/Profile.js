@@ -6,25 +6,43 @@ import { retrieveUser } from "../../ducks/user"
 
 
 class Profile extends Component {
+    constructor(props) {
+        super(props)
 
+        this.state = {
+        }
+
+
+
+    }
   
      
 render(){
-
-    console.log(this.props);
+    console.log(this.props.user);
+    const user = this.props.user
     return(
     <div>
+
         <h1> Profile Page </h1>
-        <div>
-     { this.props.user.name ? <div> {this.props.user.name} </div> : <div> Please Log In </div> }
+
+    { user ?
+        <div> 
+                { user.profile_picture ? <img src={`${user.profile_picture }`} alt="default profile photo"/> : null} 
+            <div>
+                { user.name ? <div> {user.name} </div> : null  }
+            </div>
+            <div>
+                { user.email ? <div> {user.email } </div> : null }
+            </div>
+            <Link to={`/edit/${user.userid}`}>
+                <button> Edit </button>
+            </Link>
         </div>
-        <div>
-            {/* Email: {this.props.user.email ? <div> {this.props.user.email}</div> : <input type="text" name="email"/>} */}
-        </div>
-        <Link to="/search">
-            <button>Search Page</button>
-        </Link>
+         : <div> Please Log In <Link to="/login"> <button>Login</button> </Link> </div> }
+
     </div>
+
+    
         )
     }
 
