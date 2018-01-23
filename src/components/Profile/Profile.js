@@ -18,14 +18,14 @@ class Profile extends Component {
   
      
 render(){
-    console.log(this.props.user);
+    console.log(this.props);
     const user = this.props.user
     return(
     <div>
 
         <h1> Profile Page </h1>
 
-    { user ?
+    { user.userid ?
         <div> 
                 { user.profile_picture ? <img src={`${user.profile_picture }`} alt="default profile photo"/> : null} 
             <div>
@@ -37,6 +37,12 @@ render(){
             <Link to={`/edit/${user.userid}`}>
                 <button> Edit </button>
             </Link>
+            <Link to={`/userList/${this.props.user.userid}`}>
+                <button>Saved Events</button>
+            </Link>
+
+
+
         </div>
          : <div> Please Log In <Link to="/login"> <button>Login</button> </Link> </div> }
 

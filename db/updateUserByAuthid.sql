@@ -1,1 +1,1 @@
-UPDATE users SET name=$1, profile_picture=$2, email=$3  WHERE userid =$4 ;
+UPDATE users SET name=$1, profile_picture=$2, email=$3  WHERE userid =$4 RETURNING *;

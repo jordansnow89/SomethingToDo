@@ -54,7 +54,6 @@ export function retrieveEvents(city, category, distance, date, isFree ) {
 
 const initialState = {
    events: {},
-   userEvents: {},
    isLoading: false,
    didError: false
   };

@@ -8,7 +8,7 @@ const passport = require("passport")
 const Auth0Strategy = require("passport-auth0")
 
 const eventController = require("./controllers/eventController");
-const userController= require("./controllers/userControler");
+const userController= require("./controllers/userController");
 
 const {
     AUTH_DOMAIN,
@@ -52,7 +52,6 @@ passport.use(
         scope: "openid profile"
       },
       (accessToken, refreshToken, extraParams, profile, done) => {
-        console.log(profile)
         app
           .get("db")
           .getUserByAuthid(profile.id)
@@ -94,22 +93,12 @@ app.get('/api/me', (req, res, next) => {console.log(req.sessionID)
 // }
 // }
 app.put('/api/update', userController.updateProfile)
+app.get('/api/getuserlist', userController.getUserList)
+app.delete('/api/removefromlist', userController.removeFromList)
 
 
 app.get("/api/getEventData", eventController.getEventData);
 app.put("/api/addEventToProfile", eventController.addEventToProfile);
-
-    app.get("/api/test", (req, res) => {
-        const db = app.get("db");
-      
-        db.products
-          .find({})
-          .then(response => {
-              console.log(response)
-            res.json(response);
-          })
-          .catch(console.log);
-      });
 
 app.listen(PORT || 3001, () => {
     console.log(`I am watching and waiting on ${PORT||3001}`)

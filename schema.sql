@@ -2,7 +2,8 @@ CREATE TABLE users (
     id serial primary key,
     authid varchar(50),
     name varchar(50),
-    profile_picture text
+    profile_picture text,
+    email text
 )
 
 CREATE TABLE user_selection (

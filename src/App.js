@@ -24,6 +24,8 @@ class App extends Component {
           <NavLink to="/search"> Search </NavLink>
           <br />
           <NavLink to="/login"> Login </NavLink>
+          <br />
+          <NavLink to="/profile"> Profile </NavLink>
         </header>
         
         {routes}
