@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import {withRouter, NavLink} from "react-router-dom"
+import {withRouter} from "react-router-dom"
+
+import AppBar from 'material-ui/AppBar';
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
 
 import { connect } from "react-redux"
 
@@ -10,30 +15,73 @@ import routes from './routes';
 
 
 class App extends Component {
-  
-    componentDidMount() {
+  constructor(props) {
+    super(props);
+
+        this.state = {
+          open: false,
+        };
+      }
+    
+      componentDidMount() {
         this.props.retrieveUser();
       }
 
+      handleClick = (event) => {
+        // This prevents ghost click.
+        event.preventDefault();
+    
+        this.setState({
+          open: true,
+          anchorEl: event.currentTarget,
+        });
+      };
+    
+      handleRequestClose = () => {
+        this.setState({
+          open: false,
+        });
+      };
+      
+
+     
  
   render() {
     return (
+      
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title"> Event Finder </h1>
-          <NavLink to="/search"> Search </NavLink>
-          <br />
-          <NavLink to="/login"> Login </NavLink>
-          <br />
-          <NavLink to="/profile"> Profile </NavLink>
-        </header>
+      
+      <AppBar
+    title="EventFinder"
+    onLeftIconButtonClick={this.handleClick}/>
+
+    <Popover
+    open={this.state.open}
+    anchorEl={this.state.anchorEl}
+    anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+    onRequestClose={this.handleRequestClose}>
+
+    <Menu>
+    <MenuItem primaryText="Home" onClick={() =>this.props.history.push("/")} />
+    <MenuItem primaryText="Search" onClick={() =>this.props.history.push("/search")}/>
+    <MenuItem primaryText="Login" onClick={() =>this.props.history.push("/login")}/>
+    <MenuItem primaryText="My Profile" onClick={() =>this.props.history.push("/profile")}/>
+    <MenuItem primaryText="Contact Us" onClick={() =>this.props.history.push("/contact")}/>
+    </Menu>
+  </Popover>
+    
         
         {routes}
+{/* <Footer>
+</Footer> */}
+  </div>
 
-      </div>
     );
   }
 }
+
+
 function mapStateToProps(user){
   return{
     user

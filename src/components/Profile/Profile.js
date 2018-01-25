@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux"
 import  { Link } from "react-router-dom"
 
+import {orange500, blue500} from 'material-ui/styles/colors';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import { retrieveUser } from "../../ducks/user"
 
 
@@ -18,13 +21,21 @@ class Profile extends Component {
   
      
 render(){
+    
     console.log(this.props);
     const user = this.props.user
+
+    const style = {
+        margin: 12,
+      };
+
+
+
     return(
     <div>
 
-        <h1> Profile Page </h1>
-
+        <h2> Profile Page </h2>
+        <h4> { user.name ? `Hello, ${user.name}` : null }</h4>
     { user.userid ?
         <div> 
                 { user.profile_picture ? <img src={`${user.profile_picture }`} alt="default profile photo"/> : null} 
@@ -35,16 +46,21 @@ render(){
                 { user.email ? <div> {user.email } </div> : null }
             </div>
             <Link to={`/edit/${user.userid}`}>
-                <button> Edit </button>
+            <RaisedButton label="Edit Profile" secondary={true} style={style} />
             </Link>
             <Link to={`/userList/${this.props.user.userid}`}>
-                <button>Saved Events</button>
+            <RaisedButton label="Your Saved Events" primary={true} style={style} />
             </Link>
 
 
 
         </div>
-         : <div> Please Log In <Link to="/login"> <button>Login</button> </Link> </div> }
+         : <div>
+              Please Log In  
+         <a href={process.env.REACT_APP_LOGIN}>
+         <RaisedButton label="Login" secondary={true} style={style} />
+         </a>
+     </div> }
 
     </div>
 

@@ -1,6 +1,10 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
+import {orange500, blue500} from 'material-ui/styles/colors';
+import RaisedButton from 'material-ui/RaisedButton';
+import CircularProgress from 'material-ui/CircularProgress';
+
 import { retrieveUserList } from "../../ducks/user"
 import { removeEventFromList } from "../../ducks/user"
 
@@ -28,16 +32,24 @@ class UserList extends Component{
     render(){
         console.log(this.props.user)
         const user = this.props.user
+        const style = {
+            margin: 12,
+          };
+    
         return(
         <div>
 
-            <h1> User List </h1>
-             {this.props.events.isLoading && (
-             <div>
-             <h1>Loading Content....</h1>
+            { user.user.name ? <h3>{`${user.user.name}'s Saved Events`}</h3> :
+             <div> Please Log In  
+                <a href={process.env.REACT_APP_LOGIN}>
+                <RaisedButton label="Login" secondary={true} style={style} /></a>
              </div>
-            )}
+            } 
 
+
+            
+             {this.props.user.isLoading && (  <div> <CircularProgress size={80} thickness={5} /></div>)} 
+             
             <div> 
                { user.userList && user.userList.map((event, index) =>
                 (   <div key={index}>

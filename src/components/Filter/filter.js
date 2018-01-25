@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
+
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import TextField from 'material-ui/TextField';
+import {orange500, blue500} from 'material-ui/styles/colors';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import { retrieveEvents  } from "../../ducks/event";
 
 class Filter extends Component {
@@ -8,21 +16,30 @@ class Filter extends Component {
 
         this.state = {
             category: "",
-            distance: "",
-            date: "",
-            searchTerm: "",
-            isFree: ""
+            selectedCategory: "",
 
-        }
+            distance: "",
+            selectedDistance: "",
+
+            date: "",
+            selectedDate: "",
+
+            selectedPrice: "",
+            isFree: "",
+
+            searchTerm: "",
+        };
 
         this.handleCategory = this.handleCategory.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+        this.handSearchTerm = this.handleSearchTerm.bind(this)
         this.handleSearch = this.handleSearch.bind(this)
         this.handleDistance = this.handleDistance.bind(this)
         this.handleDate = this.handleDate.bind(this)
         this.handlePrice = this.handlePrice.bind(this)
-
+        
     }
+
+
 
     handleSearch(event) {
        const { category, distance, date, searchTerm, isFree } = this.state
@@ -30,96 +47,188 @@ class Filter extends Component {
         this.props.retrieveEvents(searchTerm, category, distance, date, isFree);
       }
 
-    handleCategory(val){
-         this.setState({
-            category: val
-        })
+    handleCategory(category){
+         this.setState({ 
+             selectedCategory: category,
+             category: category.value
+             });
     }
 
-    handleDistance(val){
+    handleDistance(distance){
         this.setState({
-            distance: val
-        })
+            selectedDistance: distance,
+            distance: distance.value
+        });
+    
     }
 
-    handleDate(val){
+    handleDate(date){
         this.setState({
-            date: val
+            selectedDate: date,
+            date: date.value
         })
+        console.log(`Selected Date: ${date}`);
     }
 
-    handlePrice(val){
+    handlePrice(price){
         this.setState({
-            isFree: val
+            selectedPrice: price,
+            isFree: price.value
         })
     }
 
-    handleChange(val) {
+    handleSearchTerm(val) {
         this.setState({
              searchTerm: val 
         })
       }
 
+      handleChange = (selectedOption) => {
+        this.setState({ selectedOption });
+        console.log(`Selected: ${selectedOption.label}`);
+      }
+
+      
+
 render(){
     console.log(this.state)
+    const eventList = this.props.events.events.events
+    const { selectedCategory, selectedDistance, selectedDate, selectedPrice } = this.state;
+    // const categoryValue = selectedCategory && selectedCategory.value;
+    // const distanceValue = selectedDistance && selectedDistance.label;
+
+    const styles = {
+        errorStyle: {
+          color: orange500,
+        },
+        underlineStyle: {
+          borderColor: orange500,
+        },
+        floatingLabelStyle: {
+          color: orange500,
+        },
+        floatingLabelFocusStyle: {
+          color: blue500,
+        },
+      };
+      const style = {
+        margin: 12,
+      };
+      
     return(
+<div>    
+         
+    <br/>
+    <Card>
+    <CardHeader
+      title={<h3>Filters</h3>}
+    //   subtitle="Subtitle"
+      actAsExpander={true}
+      showExpandableButton={true}
+    />
+    <CardActions>
+    </CardActions>
+    <CardText expandable={true}>
+    <h4> What Kind Of Event? </h4>
+    <Select
+    name="Category"
+    value={selectedCategory}
+    onChange={this.handleCategory}
+    backspaceRemoves={false}
+    options={[
+      { value: '103', label: 'Music' },
+      { value: '101', label: 'Business & Professional' },
+      { value: '110', label: 'Food & Drink' },
+      { value: '113', label: 'Community & Culture' },
+      { value: '105', label: 'Arts' },
+      { value: '104', label: 'Film & Media' },
+      { value: '108', label: 'Sports' },
+      { value: '107', label: 'Health & Wellness' },
+      { value: '102', label: 'Science & Technology' },
+      { value: '109', label: 'Travel & Outdoor' },
+      { value: '111', label: 'Charity & Causes' },
+      { value: '114', label: 'Religion & Spirituality' },
+      { value: '116', label: 'Seasonal & Holiday' },
+      { value: '115', label: 'Family & Education' },
+      { value: '112', label: 'Government & Politics' },
+      { value: '106', label: 'Fashion & Beauty' },
+      { value: '117', label: 'Home & Lifestyle' },
+      { value: '118', label: 'Auto Boat & Air' },
+      { value: '120', label: 'School Activites' },
+      { value: '119', label: 'Hobbies & Special Interest' },
+      { value: '199', label: 'Other' },          
+    ]}
+    resetValue=""
+    />
+
+    <h4> How Far Do You Want Look? </h4>
+    <Select
+    name="Distance"
+    value={selectedDistance}
+    onChange={this.handleDistance}
+    backspaceRemoves={false}
+    options={[
+      { value: '1mi', label: '1 Mile' },
+      { value: '15mi', label: '15 Miles' },
+      { value: '30mi', label: '30 Miles' },
+      { value: '50mi', label: '50 Miles' },
+      { value: '150mi', label: '150 Miles' },
+    ]}
+    resetValue=""
+    />
+
+    <h4> When Do You Feel Like Going? </h4>
+    <Select
+    name="Date"
+    value={selectedDate}
+    onChange={this.handleDate}
+    backspaceRemoves={false}
+    options={[
+      { value: 'today', label: 'Today' },
+      { value: 'tomorrow', label: 'Tomorrow' },
+      { value: 'this_week', label: 'This Week' },
+      { value: 'this_weekend', label: 'This Weekend' },
+      { value: 'next_week', label: 'Next Week' },
+      { value: 'this_month', label: 'This Month' },
+    ]}
+    resetValue=""
+    />
+    
+    <h4> Feel Like Paying?</h4>
+    <Select
+    name="Price"
+    value={selectedPrice}
+    onChange={this.handlePrice}
+    backspaceRemoves={false}
+    options={[
+      { value: 'free', label: 'Free' },
+      { value: 'paid', label: 'Paid' },
+    ]}
+    resetValue=""
+    />
+    </CardText>
+  </Card>
         <div>
-            <h1> Search </h1>
-
-            <div>
-            <select onChange={ e => this.handleCategory(e.target.value)} >
-                <option value="">Category</option>
-                <option value="103">Music</option>
-                <option value="101" >Business & Professional </option>
-                <option value="110">Food & Drink</option>
-                <option value="113">Community & Culture</option>
-                <option value="105">Arts</option>
-                <option value="104">Film & Media</option>
-                <option value="108">Sports</option>
-                <option value="107">Health & Wellness</option>
-                <option value="102">Science & Technology</option>
-                <option value="109">Travel & Outdoor</option>
-                <option value="111">Charity & Causes</option>
-                <option value="114">Religion & Spirituality</option>
-                <option value="116">Seasonal & Holiday </option>
-                <option value="115">Family & Education</option>
-                <option value="112">Government & Politics</option>
-                <option value="106">Fashion & Beauty</option>
-                <option value="117">Home & Lifestyle </option>
-                <option value="118">Auto, Boat & Air</option>
-                <option value="120">School Activities</option>
-                <option value="120">Hobbies & Special Interest </option>
-                <option value="199">Other</option>
-            </select> 
-            <select onChange={ e => this.handleDistance(e.target.value)}>
-                <option value="">Distance</option>
-                <option value="1mi">1 Mile </option>
-                <option value="5mi">5 Miles </option>
-                <option value="10mi">10 Miles </option>
-                <option value="20mi">20 Miles </option>
-                <option value="50mi">50 Miles </option>
-            </select>
-            <select onChange={ e => this.handleDate(e.target.value)} >
-                <option value="">Date</option>
-                <option value="today">Today</option>
-                <option value="tomorrow">Tomorrow</option>
-                <option value="this_week">This Week</option>
-                <option value="this_weekend">This Weekend</option>
-                <option value="next_week">Next Week</option>
-                <option value="this_month">This Month</option>
-            </select>
-            <select onChange={e => this.handlePrice(e.target.value)}>
-                <option value="">Price</option>
-                <option value="free">Free</option>
-                <option value="paid">Paid</option>
-            </select>
-            </div>
-
-            <form onSubmit={this.handleSearch}>
-            <input placeholder="City State or Zipcode"  onChange={e => this.handleChange(e.target.value)} />
-            <button> SEARCH </button>
+            <br/>
+        <form onSubmit={this.handleSearch}>
+            <TextField
+            floatingLabelText="Search by City & State or Zip"
+            floatingLabelStyle={styles.floatingLabelStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+            onChange={e => this.handleSearchTerm(e.target.value)}
+            />
+             <RaisedButton label="Search" secondary={true} style={style} onClick={ this.handleSearch}/>
+            {/* <button> SEARCH </button> */}
         </form>
+        
+
+        <div>
+            {eventList && <h4>{`We found something for you in ${this.state.searchTerm}` } </h4>}
         </div>
+    </div>
+     
+</div>
+
      
     
         )

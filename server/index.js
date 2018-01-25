@@ -27,6 +27,7 @@ massive(CONNECTION_STRING)
   })
   .catch(console.log);
 
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(json());
 app.use(cors());
 app.use(session({
@@ -99,6 +100,12 @@ app.delete('/api/removefromlist', userController.removeFromList)
 
 app.get("/api/getEventData", eventController.getEventData);
 app.put("/api/addEventToProfile", eventController.addEventToProfile);
+
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 app.listen(PORT || 3001, () => {
     console.log(`I am watching and waiting on ${PORT||3001}`)

@@ -7,7 +7,7 @@ import Profile from  "./components/Profile/Profile";
 import Search from  "./components/Search/Search";
 import Userlist from  "./components/UserList/UserList";
 import EditProfile from  "./components/Profile/EditProfile";
-
+import Contact from "./components/Contact/Contact"
 
 
 export default (
@@ -18,5 +18,6 @@ export default (
         <Route path="/edit/:userid" component={EditProfile} />
         <Route path="/search" component={Search} />
         <Route path="/userlist" component={Userlist} />
+        <Route path="/contact" component={Contact} />
     </Switch>
 );
