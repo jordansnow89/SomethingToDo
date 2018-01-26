@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import axios from "axios"
 // import { Link } from "react-router-dom";
 
 
@@ -35,10 +36,14 @@ class Home extends Component {
   }
   componentDidMount() {
     this.props.retrieveUser();
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition((position) => {
      console.log(position.coords.latitude, position.coords.longitude);
-    });
-  }
+    axios.get(`https://us1.locationiq.org/v1/reverse.php?key=91a4fb428d8243&lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`)
+    .then(response  => {this.setState({searchTerm: `${response.data.address.city}, ${response.data.address.state}`} ); console.log(response)
+    }
+);
+    
+})}
 
   handleChange(val) {
     this.setState({
@@ -67,7 +72,7 @@ class Home extends Component {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        className: "slider"
+        className: "slider",
       }
 
       const styles = {
@@ -105,9 +110,10 @@ class Home extends Component {
             <div className="searchBox">
                 <form onSubmit={this.handleSearch}>
                 <TextField
-                floatingLabelText="Search by City & State or Zip"
+                floatingLabelText=" or Search by City & State or Zip"
                 floatingLabelStyle={styles.floatingLabelStyle}
               floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+              value={this.state.searchTerm}
                 onChange={e => this.handleSearchTerm(e.target.value)}
                 />
                 <RaisedButton label="Search" secondary={true} style={style} onClick={ this.handleSearch}/>

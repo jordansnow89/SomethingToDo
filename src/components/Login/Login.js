@@ -14,7 +14,7 @@ export default class Login extends Component {
         <div>
             <h3> Log In and Lets Get Started</h3>
 
-            <div>
+            <div className="loginContainer">
                 <a href={process.env.REACT_APP_LOGIN}>
                 <RaisedButton label="Login" secondary={true} style={style} />
                 </a>

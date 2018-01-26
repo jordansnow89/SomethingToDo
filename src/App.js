@@ -45,16 +45,21 @@ class App extends Component {
       };
       
 
-     
  
-  render() {
+  render(){
+  
+  const styles = {
+    borderbottom: "1px solid #D2D6DF",
+  }
+  
     return (
     <div>
     <div className="App">
       
       <AppBar
     title="EventFinder"
-    onLeftIconButtonClick={this.handleClick}/>
+    onLeftIconButtonClick={this.handleClick}
+    styles={styles}/>
 
     <Popover
     open={this.state.open}

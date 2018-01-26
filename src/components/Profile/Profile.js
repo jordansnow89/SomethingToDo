@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux"
 import  { Link } from "react-router-dom"
 
+import './Profile.css'
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -55,7 +56,7 @@ render(){
 
 
         </div>
-         : <div>
+         : <div className="loginContainer">
               Please Log In  
          <a href={process.env.REACT_APP_LOGIN}>
          <RaisedButton label="Login" secondary={true} style={style} />

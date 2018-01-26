@@ -3,7 +3,8 @@ import { connect } from "react-redux"
 
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import {Card
+    , CardHeader, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -97,6 +98,8 @@ render(){
     // const categoryValue = selectedCategory && selectedCategory.value;
     // const distanceValue = selectedDistance && selectedDistance.label;
 
+    
+
     const styles = {
         errorStyle: {
           color: orange500,
@@ -114,20 +117,21 @@ render(){
       const style = {
         margin: 12,
       };
-      
+    
+    
     return(
-<div>    
+<div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>    
          
     <br/>
+    <div className="filterContainer" style={{width: "60%"}}>
     <Card>
     <CardHeader
       title={<h3>Filters</h3>}
     //   subtitle="Subtitle"
       actAsExpander={true}
       showExpandableButton={true}
+        style={{textAlign: "left"}}
     />
-    <CardActions>
-    </CardActions>
     <CardText expandable={true}>
     <h4> What Kind Of Event? </h4>
     <Select
@@ -208,6 +212,7 @@ render(){
     />
     </CardText>
   </Card>
+  </div>
         <div>
             <br/>
         <form onSubmit={this.handleSearch}>
