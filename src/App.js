@@ -6,6 +6,7 @@ import AppBar from 'material-ui/AppBar';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import Footer from './components/Footer/footer';
 
 import { connect } from "react-redux"
 
@@ -73,8 +74,8 @@ class App extends Component {
     
         
         {routes}
-{/* <Footer>
-</Footer> */}
+
+  <Footer/>
   </div>
 
     );

@@ -3,6 +3,8 @@ import { connect } from "react-redux"
 import  Filter  from "../Filter/filter"
 
 import CircularProgress from 'material-ui/CircularProgress';
+import {orange500, blue500} from 'material-ui/styles/colors';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { retrieveEvents  } from "../../ducks/event";
 import { addEventToProfile  } from "../../ducks/event";
@@ -31,9 +33,26 @@ class Search extends Component {
 render() {
 const eventList = this.props.events.events.events
     console.log(this.props)
+    const styles = {
+        errorStyle: {
+          color: orange500,
+        },
+        underlineStyle: {
+          borderColor: orange500,
+        },
+        floatingLabelStyle: {
+          color: orange500,
+        },
+        floatingLabelFocusStyle: {
+          color: blue500,
+        },
+      };
+      const style = {
+        margin: 12,
+      };
     return(
         <div>
-            <h2> Find Something To Do </h2>
+            <h4> Search & Use The FIlters To Help Find Something To Do </h4>
 
         <Filter />
         <br/>
@@ -48,6 +67,7 @@ const eventList = this.props.events.events.events
                 <div> EVENT DATE: {event.start.local} </div>
                 <div> EVENT DESCRIPTION: {event.description.text} </div>
                  <button onClick={ () => this.props.user.user.userid ? this.handleAdd(event) : this.handleAlert() }> ADD </button>
+                 <RaisedButton label="Add To Your Favorites" secondary={true} style={style} onClick={ () => this.props.user.user.userid ? this.handleAdd(event) : this.handleAlert() }/>
                   </div> 
                  )
             )}

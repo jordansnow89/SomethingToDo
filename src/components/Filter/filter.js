@@ -31,7 +31,7 @@ class Filter extends Component {
         };
 
         this.handleCategory = this.handleCategory.bind(this)
-        this.handSearchTerm = this.handleSearchTerm.bind(this)
+        this.handSearch= this.handleSearch.bind(this)
         this.handleSearch = this.handleSearch.bind(this)
         this.handleDistance = this.handleDistance.bind(this)
         this.handleDate = this.handleDate.bind(this)
@@ -223,7 +223,7 @@ render(){
         
 
         <div>
-            {eventList && <h4>{`We found something for you in ${this.state.searchTerm}` } </h4>}
+            {this.state.searchTerm && <h4>{`We found something for you in ${this.state.searchTerm}` } </h4>}
         </div>
     </div>
      

@@ -57,7 +57,7 @@ class UserList extends Component{
                     { event.imageurl ? <img src={`${event.imageurl}`} alt="event_image"/> : null}
                     <div> EVENT DESCRIPTION: {event.description} </div>
                     <div> EVENT DATE: {event.start}</div>
-                    <button onClick={ () => this.handleRemove(event.selection_id)}>REMOVE</button>
+                    <RaisedButton label="Remove From Favorites" fullWidth={true} secondary="true" onClick={ () => this.handleRemove(event.selection_id)}/>
                     </div>
 
 

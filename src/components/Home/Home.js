@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { Link } from "react-router-dom";
 
-import "./Home.css"
 
+import "./Home.css"
 import Slider from "react-slick"
 import SliderImage1 from '../../images/img1.jpg'
 import SliderImage2 from '../../images/img2.jpg'
 import SliderImage3 from '../../images/img3.jpg'
 import SliderImage4 from '../../images/img4.jpg'
 import SliderImage5 from '../../images/img5.jpg'
-import SliderImage6 from '../../images/img6.jpg'
+
 
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -28,8 +28,9 @@ class Home extends Component {
     this.state= {
       searchTerm: ""
     }
-    this.handleSearch = this.handleSearch.bind(this)
+    this.handleSearchTerm = this.handleSearchTerm.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   
   }
   componentDidMount() {
@@ -42,14 +43,21 @@ class Home extends Component {
     })
   }
 
+  handleSearchTerm(val) {
+    this.setState({
+         searchTerm: val 
+    })
+  }
+  
   handleSearch(event) {
+    const { category, distance, date, searchTerm, isFree } = this.state
      event.preventDefault();
-     this.props.retrieveEvents(this.state.searchTerm);
+     this.props.retrieveEvents(searchTerm);
+     this.props.history.push("/search")
    }
-  
-  
+
+
   render() {
-      console.log(this.props);
       const settings = {
         infinite: true,
         speed: 500,
@@ -76,37 +84,34 @@ class Home extends Component {
       const style = {
         margin: 12,
       };
-
+      console.log(this.props)
     return (
-      <div>
-        <div>
-          <h1>Find Something To Do</h1>
-
-        <div className="imageslider">
-
-        <Slider {...settings}>
-        <div style={{background: `url(${SliderImage1})`, height: '60vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
-        <div style={{background: `url(${SliderImage3})`, height: '60vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
-        <div style={{background: `url(${SliderImage4})`, height: '60vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
-        <div style={{background: `url(${SliderImage5})`, height: '60vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
-        <div style={{background: `url(${SliderImage2})`, height: '60vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
-        <div style={{background: `url(${SliderImage6})`, height: '60vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
-        </Slider>
-
+        <div className="homeBody">
+          <div>
+            <h3>Find Something To Do</h3>
+          </div>
+          <div className="imageslider">
+          <Slider {...settings}>
+          <div style={{background: `url(${SliderImage1})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
+          <div style={{background: `url(${SliderImage3})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
+          <div style={{background: `url(${SliderImage4})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
+          <div style={{background: `url(${SliderImage5})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
+          <div style={{background: `url(${SliderImage2})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
+          </Slider>
+          </div>
+            <div className="searchBox">
+                <form onSubmit={this.handleSearch}>
+                <TextField
+                floatingLabelText="Search by City & State or Zip"
+                floatingLabelStyle={styles.floatingLabelStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+                onChange={e => this.handleSearchTerm(e.target.value)}
+                />
+                <RaisedButton label="Search" secondary={true} style={style} onClick={ this.handleSearch}/>
+                </form>
+            </div>
+              
         </div>
-
-          <form onSubmit={this.handleSearch}>
-           
-            <TextField
-            floatingLabelText="Search by City & State or Zip"
-            floatingLabelStyle={styles.floatingLabelStyle}
-            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-            onChange={e => this.handleSearchTerm(e.target.value)}
-            />
-            <RaisedButton label="Search" secondary={true} style={style} onClick={ this.handleSearch}/>
-            </form>
-        </div>
-      </div>
     );
   }
 }

@@ -2,6 +2,9 @@ import React , { Component } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 
+import {orange500, blue500} from 'material-ui/styles/colors';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import { updateProfile  } from "../../ducks/user";
 
 class EditProfile extends Component {
@@ -48,6 +51,23 @@ class EditProfile extends Component {
  render() {
     //  console.log(this.state, this.props)
      const user = this.props.user
+       const styles = {
+        errorStyle: {
+          color: orange500,
+        },
+        underlineStyle: {
+          borderColor: orange500,
+        },
+        floatingLabelStyle: {
+          color: orange500,
+        },
+        floatingLabelFocusStyle: {
+          color: blue500,
+        },
+      };
+      const style = {
+        margin: 12,
+      };
     return(
       
         <div>
@@ -67,11 +87,19 @@ class EditProfile extends Component {
                 <div>
                     Email: <input onChange={e => this.handleEmail(e.target.value)} placeholder={`${this.props.user.email}`} />
                 </div>
-                <button onClick={ this.handleUpdate }> UPDATE </button>
-            </div>
+                {/* <button onClick={ this.handleUpdate }> UPDATE </button> */}
+                <RaisedButton label="Cancel" default={true} style={style} onClick={() =>this.props.history.push("/profile")}/>
+                <RaisedButton label="Update Profile" secondary={true} style={style} onClick={ this.handleUpdate }/>                
+                </div>
            
                :
-               <div> Please Log In <Link to="/login"> <button>Login</button> </Link> </div>
+               <div><p> Please Log In</p> <a href={process.env.REACT_APP_LOGIN}><RaisedButton label="Login" secondary={true} style={style} /></a></div>
+
+               
+               
+               
+               
+               
 
             }
 
