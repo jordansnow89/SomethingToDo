@@ -35,6 +35,9 @@ class Home extends Component {
   }
   componentDidMount() {
     this.props.retrieveUser();
+    navigator.geolocation.getCurrentPosition(function(position) {
+     console.log(position.coords.latitude, position.coords.longitude);
+    });
   }
 
   handleChange(val) {

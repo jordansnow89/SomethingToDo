@@ -49,8 +49,8 @@ class App extends Component {
  
   render() {
     return (
-      
-      <div className="App">
+    <div>
+    <div className="App">
       
       <AppBar
     title="EventFinder"
@@ -75,9 +75,10 @@ class App extends Component {
         
         {routes}
 
+  
+  </div>
   <Footer/>
   </div>
-
     );
   }
 }
