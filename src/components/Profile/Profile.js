@@ -35,7 +35,7 @@ render(){
     return(
     <div>
 
-        <h2> Profile Page </h2>
+        <h2> Your Profile </h2>
         <h4> { user.name ? `Hello, ${user.name}` : null }</h4>
     { user.userid ?
         <div> 

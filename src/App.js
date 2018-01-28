@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
-import {withRouter} from "react-router-dom"
+import {withRouter, NavLink} from "react-router-dom"
 
 import AppBar from 'material-ui/AppBar';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import Footer from './components/Footer/footer';
-import logo from "./images/logo.png"
 
+import Footer from './components/Footer/footer';
+
+import logo from "./images/logo.png"
+import logo2 from "./images/desktoplogo.jpg"
+
+import {orange500, blue500} from 'material-ui/styles/colors';
+import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from "react-redux"
 
 import { retrieveUser } from "./ducks/user"
@@ -50,7 +55,7 @@ class App extends Component {
   render(){
 
   const logoimg = <img className="logo-img" src={logo} />;
- 
+  const desktopimg = <img className="desktopimg" src={logo2} />
   
     return (
     <div>
@@ -67,10 +72,32 @@ class App extends Component {
     <div className="desktopNav">
     <AppBar 
     className="desktopappbar"
-    title="DESKTOP"
-    onLeftIconButtonClick={this.handleClick}
+    iconElementLeft={desktopimg}
     />
+    <RaisedButton label="Home"  style={{ height: "100%", border: "1px solid #666A73"}} onClick={() =>this.props.history.push("/")} />
+    <RaisedButton label="Search"  style={{ height: "100%", border: "1px solid #666A73"}} onClick={() =>this.props.history.push("/search")} />
+     <RaisedButton label="Contact" style={{ height: "100%", border: "1px solid #666A73"}} onClick={() =>this.props.history.push("/contact")} />
+    <RaisedButton label="Profile"  style={{ height: "100%", border: "1px solid #666A73"}} onClick={() =>this.props.history.push("/profile")} />
+    <a href={process.env.REACT_APP_LOGIN}><RaisedButton label="Login" secondary={true} style={{ height: "100%", border: "1px solid ##666A73"}} /></a>
     </div>
+{/* <div className="desktopNav">
+  <NavLink className="navlink-wrapper" to="/">
+    <p className="navlink"> </p>
+  </NavLink>
+  <NavLink className="navlink-wrapper" to="/search">
+    <p className="navlink"> Searcj </p>
+  </NavLink>
+  <NavLink className="navlink-wrapper" to="/contact">
+    <p className="navlink"> Contact </p>
+  </NavLink>
+  <NavLink className="navlink-wrapper" to="/profile">
+    <p className="navlink"> MY Profile </p>
+  </NavLink>
+  <NavLink className="navlink-wrapper" to="/profile">
+    <p className="navlink"> Contact </p>
+  </NavLink>
+</div>
+ */}
 
     <Popover
     open={this.state.open}

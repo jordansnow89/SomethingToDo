@@ -74,6 +74,7 @@ class Home extends Component {
         autoplay: true,
         className: "slider",
         arrows: false,
+        autoplaySpeed: 5000
       }
 
       const styles = {
