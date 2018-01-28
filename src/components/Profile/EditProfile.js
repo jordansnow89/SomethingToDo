@@ -4,7 +4,9 @@ import { Link } from "react-router-dom"
 
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
 
+import "./Editprofile.css"
 import { updateProfile  } from "../../ducks/user";
 
 class EditProfile extends Component {
@@ -75,32 +77,27 @@ class EditProfile extends Component {
         <h1> EDIT PROFILE </h1>
 
         { user.userid ?
-            <div className="edit_box">
-                <div>
-                 User Name: <input onChange={ e => this.handleName(e.target.value)} placeholder={`${this.props.user.name}`} />
+            <div >
+            <div className="editbox">
+                <div className="editbox">
+                User Name: <input onChange={ e => this.handleName(e.target.value)} placeholder={`${this.props.user.name}`} />
                 </div>
                  <br />
-                 <div>
+                 <div className="editbox">
                 Profile Picture URL: <input onChange={ e => this.handlePicture(e.target.value)} placeholder={`${this.props.user.profile_picture}`} />
                 </div>
                 <br/> 
-                <div>
+                <div className="editbox">
                     Email: <input onChange={e => this.handleEmail(e.target.value)} placeholder={`${this.props.user.email}`} />
-                </div>
-                {/* <button onClick={ this.handleUpdate }> UPDATE </button> */}
-                <RaisedButton label="Cancel" default={true} style={style} onClick={() =>this.props.history.push("/profile")}/>
-                <RaisedButton label="Update Profile" secondary={true} style={style} onClick={ this.handleUpdate }/>                
-                </div>
-           
+                </div> 
+            </div>
+            <div>
+             <RaisedButton label="Cancel" default={true} style={style} onClick={() =>this.props.history.push("/profile")}/>
+             <RaisedButton label="Update Profile" secondary={true} style={style} onClick={ this.handleUpdate }/> 
+             </div>
+             </div>
                :
                <div><p> Please Log In</p> <a href={process.env.REACT_APP_LOGIN}><RaisedButton label="Login" secondary={true} style={style} /></a></div>
-
-               
-               
-               
-               
-               
-
             }
 
         </div>

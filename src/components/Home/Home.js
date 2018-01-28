@@ -9,8 +9,6 @@ import Slider from "react-slick"
 import SliderImage1 from '../../images/img1.jpg'
 import SliderImage2 from '../../images/img2.jpg'
 import SliderImage3 from '../../images/img3.jpg'
-import SliderImage4 from '../../images/img4.jpg'
-import SliderImage5 from '../../images/img5.jpg'
 
 
 import {orange500, blue500} from 'material-ui/styles/colors';
@@ -104,15 +102,14 @@ class Home extends Component {
           <Slider {...settings}>
           <div style={{background: `url(${SliderImage1})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
           <div style={{background: `url(${SliderImage3})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
-          <div style={{background: `url(${SliderImage4})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
-          <div style={{background: `url(${SliderImage5})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
           <div style={{background: `url(${SliderImage2})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
           </Slider>
           </div>
           <div className="imageslider-mobile">
-          <Slider {...settings}>
-          <div style={{background: `url(${SliderImage1})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
-          <div style={{background: `url(${SliderImage3})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
+          <Slider {...settings} style={{height: "30vh"}}>
+          <div style={{background: `url(${SliderImage1})`, height: '30vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
+          <div style={{background: `url(${SliderImage2})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
+          <div style={{background: `url(${SliderImage3})`, height: '30vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
       
           </Slider>
           </div>

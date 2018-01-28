@@ -48,7 +48,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 10vh;
+    height: 70px;
     background-color: #1976D2;
     padding: 0;
     margin: 0;
@@ -56,12 +56,13 @@
   }
   .desktopimg{ 
   border: 2px solid #666A73;
-  height: 100% !important;
-  width: 200.5px !important;
+  height: 66px !important;
+  width: 180.5px !important;
   z-index: 2;
   position: relative;
-  top: -6px;
-  left: -10px}
+  top: -8px;
+  left: -10px;
+  }
 
 
   .navbutton {
