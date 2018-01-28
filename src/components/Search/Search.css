@@ -1,0 +1,21 @@
+.eventContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eventName {
+    padding:10px;
+    
+    text-overflow: ellipsis;
+    overflow:hidden;
+}
+
+.eventList {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.eventDate {
+    color: #ff5722 
+}

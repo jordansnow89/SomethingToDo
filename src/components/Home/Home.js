@@ -73,6 +73,7 @@ class Home extends Component {
         slidesToScroll: 1,
         autoplay: true,
         className: "slider",
+        arrows: false,
       }
 
       const styles = {
@@ -96,7 +97,7 @@ class Home extends Component {
     return (
         <div className="homeBody">
           <div>
-            <h3>Find Something To Do</h3>
+            <h2 style={{color: "rgb(255, 87, 34"}}>Lets Do  Something!</h2>
           </div>
           <div className="imageslider">
           <Slider {...settings}>
@@ -107,6 +108,14 @@ class Home extends Component {
           <div style={{background: `url(${SliderImage2})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
           </Slider>
           </div>
+          <div className="imageslider-mobile">
+          <Slider {...settings}>
+          <div style={{background: `url(${SliderImage1})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
+          <div style={{background: `url(${SliderImage3})`, height: '50vh', backgroundSize: 'cover', backgroundPosition: '50%'}}></div>
+      
+          </Slider>
+          </div>
+          
             <div className="searchBox">
                 <form onSubmit={this.handleSearch}>
                 <TextField

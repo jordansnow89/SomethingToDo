@@ -8,9 +8,7 @@ export default class Footer extends Component {
 
 render(){
     return(
-        <div className="footerBody">
-
-        </div>
+        <div className="footerBody">  </div>
     )
 }
 

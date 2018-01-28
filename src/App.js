@@ -7,6 +7,7 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Footer from './components/Footer/footer';
+import logo from "./images/logo.png"
 
 import { connect } from "react-redux"
 
@@ -47,19 +48,29 @@ class App extends Component {
 
  
   render(){
-  
-  const styles = {
-    borderbottom: "1px solid #D2D6DF",
-  }
+
+  const logoimg = <img className="logo-img" src={logo} />;
+ 
   
     return (
     <div>
     <div className="App">
-      
+
+    <div className="mobileNav">
       <AppBar
-    title="EventFinder"
+      className="mobileappbar"
+    title={logoimg}
     onLeftIconButtonClick={this.handleClick}
-    styles={styles}/>
+    />
+  </div>
+  
+    <div className="desktopNav">
+    <AppBar 
+    className="desktopappbar"
+    title="DESKTOP"
+    onLeftIconButtonClick={this.handleClick}
+    />
+    </div>
 
     <Popover
     open={this.state.open}
@@ -77,8 +88,9 @@ class App extends Component {
     </Menu>
   </Popover>
     
-        
-        {routes}
+  
+        {routes} 
+  
 
   
   </div>

@@ -2,9 +2,11 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import  Filter  from "../Filter/filter"
 
+import "./Search.css"
 import CircularProgress from 'material-ui/CircularProgress';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
+import {Card, CardHeader, CardText, CardTitle} from 'material-ui/Card';
 
 import { retrieveEvents  } from "../../ducks/event";
 import { addEventToProfile  } from "../../ducks/event";
@@ -33,23 +35,8 @@ class Search extends Component {
 render() {
 const eventList = this.props.events.events.events
     console.log(this.props)
-    const styles = {
-        errorStyle: {
-          color: orange500,
-        },
-        underlineStyle: {
-          borderColor: orange500,
-        },
-        floatingLabelStyle: {
-          color: orange500,
-        },
-        floatingLabelFocusStyle: {
-          color: blue500,
-        },
-      };
-      const style = {
-        margin: 12,
-      };
+   
+      
     return(
         <div>
             <h4> Search & Use The FIlters To Help Find Something To Do </h4>
@@ -57,18 +44,29 @@ const eventList = this.props.events.events.events
         <Filter />
         <br/>
 
-            <div >
-                {this.props.events.isLoading && ( <div> <CircularProgress size={80} thickness={5} /></div>)}    
+            <div className="eventContent">
+                {this.props.events.isLoading && ( <div> <CircularProgress size={150} thickness={5} /></div>)}    
                 {eventList && eventList.map((event, index) =>
                  ( 
-                <div key={index}>
-                <div> EVENT NAME: {event.name.text} </div>
-                {event.logo ? <img src={`${event.logo.url}`} alt="event_image"/> : null}
-                <div> EVENT DATE: {event.start.local} </div>
+                     
+                <div className="eventList" key={index}>
+                <Card style={{width: "80vw"}}>
+                <CardHeader actAsExpander={true} showExpandableButton={true}>
+               
+                <div className="eventName"  > {event.name.text} </div>
+
+                {event.logo ? <img style={{width: "50%"}}src={`${event.logo.url}`} alt="event_image"/> : null} 
+                </CardHeader>
+                <CardText expandable={true}>
+                <div className="eventDate">{`Date: ${event.start.local} `}</div>
                 <div> EVENT DESCRIPTION: {event.description.text} </div>
-                 <button onClick={ () => this.props.user.user.userid ? this.handleAdd(event) : this.handleAlert() }> ADD </button>
-                 <RaisedButton label="Add To Your Favorites" secondary={true} style={style} onClick={ () => this.props.user.user.userid ? this.handleAdd(event) : this.handleAlert() }/>
-                  </div> 
+                 {/* <button onClick={ () => this.props.user.user.userid ? this.handleAdd(event) : this.handleAlert() }> ADD </button> */}
+                 <RaisedButton label="Add To Your Favorites" secondary={true} style={{ margin: "10px"}} onClick={ () => this.props.user.user.userid ? this.handleAdd(event) : this.handleAlert() }/>
+                 </CardText>
+
+                 </Card>
+                </div> 
+                  
                  )
             )}
             </div>

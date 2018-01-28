@@ -34,6 +34,7 @@ class UserList extends Component{
         const user = this.props.user
         const style = {
             margin: 12,
+
           };
     
         return(
@@ -57,7 +58,7 @@ class UserList extends Component{
                     { event.imageurl ? <img src={`${event.imageurl}`} alt="event_image"/> : null}
                     <div> EVENT DESCRIPTION: {event.description} </div>
                     <div> EVENT DATE: {event.start}</div>
-                    <RaisedButton label="Remove From Favorites" fullWidth={true} secondary="true" onClick={ () => this.handleRemove(event.selection_id)}/>
+                    <RaisedButton style={style} label="Remove From Favorites"  secondary="true" onClick={ () => this.handleRemove(event.selection_id)}/>
                     </div>
 
 

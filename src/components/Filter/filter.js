@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 
+import "./filter.css"
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import {Card
-    , CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -227,8 +227,8 @@ render(){
         </form>
         
 
-        <div>
-            {this.state.searchTerm && <h4>{`We found something for you in ${this.state.searchTerm}` } </h4>}
+        <div id="foundText">
+            { eventList ? <h4>{`We found something for you!` } </h4> : null}
         </div>
     </div>
      
