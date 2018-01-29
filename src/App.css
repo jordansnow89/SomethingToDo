@@ -11,7 +11,34 @@
 .desktopNav {
   display: none;
 }
+.nav-link-container {
+  width: 40%;
+  display: flex;
+  /* justify-content: space-between; */
+}
 
+.navlink-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 18px;
+  /* background-color: red; */
+  flex-grow: 1;
+  color: white;
+  text-decoration: none;
+  border-left: 1px solid #222;
+}
+.navlink-wrapper:hover {
+  background-color: white;
+  color: #1976D2;
+  
+}
+.navlink-active {
+  background-color: white;
+  color: #1976D2;
+  
+}
 .mobileNav{
   height: 10vh;
 }
@@ -52,16 +79,19 @@
     background-color: #1976D2;
     padding: 0;
     margin: 0;
+    justify-content: space-between;
    
   }
   .desktopimg{ 
-  border: 2px solid #666A73;
-  height: 66px !important;
+  /* border: 2px solid #666A73; */
+  box-sizing: border-box;
+  height: 100%;
   width: 175.5px !important;
   z-index: 2;
   position: relative;
-  top: -8px;
-  left: -10px;
+  border-bottom: 1px solid #1976D2;
+  /* top: -8px;
+  left: -10px; */
   }
 
 

@@ -69,35 +69,42 @@ class App extends Component {
     />
   </div>
   
-    <div className="desktopNav">
-    <AppBar 
+    {/* <div className="desktopNav"> */}
+    {/* <AppBar 
     className="desktopappbar"
     iconElementLeft={desktopimg}
-    />
-    <RaisedButton label="Home"  style={{ height: "100%", border: "1px solid #666A73"}} onClick={() =>this.props.history.push("/")} />
-    <RaisedButton label="Search"  style={{ height: "100%", border: "1px solid #666A73"}} onClick={() =>this.props.history.push("/search")} />
-     <RaisedButton label="Contact" style={{ height: "100%", border: "1px solid #666A73"}} onClick={() =>this.props.history.push("/contact")} />
-    <RaisedButton label="Profile"  style={{ height: "100%", border: "1px solid #666A73"}} onClick={() =>this.props.history.push("/profile")} />
-    <a href={process.env.REACT_APP_LOGIN}><RaisedButton label="Login" secondary={true} style={{ height: "100%", border: "1px solid ##666A73"}} /></a>
-    </div>
-{/* <div className="desktopNav">
-  <NavLink className="navlink-wrapper" to="/">
-    <p className="navlink"> </p>
+    /> */}
+ 
+    {/* <RaisedButton label="Home"  style={{ height: "100%", border: ".5px solid #666A73", margin: ".5px"}} onClick={() =>this.props.history.push("/")} />
+    <RaisedButton label="Search"  style={{ height: "100%", border: ".5px solid #666A73", margin: ".5px"}} onClick={() =>this.props.history.push("/search")} />
+     <RaisedButton label="Contact" style={{ height: "100%", border: ".5px solid #666A73", margin: ".5px"}} onClick={() =>this.props.history.push("/contact")} />
+    <RaisedButton label="Profile"  style={{ height: "100%", border: ".5px solid #666A73",margin: ".5px"}} onClick={() =>this.props.history.push("/profile")} />
+    <a href={process.env.REACT_APP_LOGIN}><RaisedButton label="Login" primary="true" style={{ height: "100%", border: ".5px solid #666A73"}} /></a> */}
+    {/* </div> */}
+ <div className="desktopNav">
+ {desktopimg}
+ <div className="nav-link-container" >
+  <NavLink className="navlink-wrapper" activeClassName="navlink-active" exact to="/">
+    Home
   </NavLink>
-  <NavLink className="navlink-wrapper" to="/search">
-    <p className="navlink"> Searcj </p>
+  <NavLink className="navlink-wrapper" activeClassName="navlink-active"to="/search">
+    Search
   </NavLink>
-  <NavLink className="navlink-wrapper" to="/contact">
-    <p className="navlink"> Contact </p>
+  <NavLink className="navlink-wrapper" activeClassName="navlink-active"to="/contact">
+    Contact
   </NavLink>
-  <NavLink className="navlink-wrapper" to="/profile">
-    <p className="navlink"> MY Profile </p>
+  <NavLink className="navlink-wrapper" activeClassName="navlink-active"to="/profile">
+    Profile
   </NavLink>
-  <NavLink className="navlink-wrapper" to="/profile">
-    <p className="navlink"> Contact </p>
-  </NavLink>
+  
+  
+  <a href={process.env.REACT_APP_LOGIN} className="navlink-wrapper">
+    Login
+  </a>
+  </div>
+  
 </div>
- */}
+ 
 
     <Popover
     open={this.state.open}

@@ -42,14 +42,16 @@ render(){
     <div className="profilecontainer" style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
         <div classame="profilebox">
             <div> 
+                <div className="piccontainer">
                 { user.profile_picture ? <img className="profilepic"src={`${user.profile_picture }`} alt=""/> : null} 
-            <div className="profileinfo">
+                </div>
+                <div className="profileinfo">
                 { user.name ? <div> {user.name} </div> : null  }
-            </div>
-            <div className="profileinfo">
+                </div>
+                <div className="profileinfo">
                 { user.email ? <div> {user.email } </div> : null }
+                </div>
             </div>
-        </div>
             <Link to={`/edit/${user.userid}`}>
             <RaisedButton label="Edit Profile" secondary={true} style={style} />
             </Link>

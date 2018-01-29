@@ -4,16 +4,22 @@
 
 .profilecontainer{
     border: 1px solid #666A73;
+    height: 80%;
     width: 60%;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 1px 1.5px;
 }
 
-.profilebox {
+.piccontainer {
     
 }
 
 .profilepic{
-    width: 40%;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+  
+    /* border-radius: 100em; */
+    
 }

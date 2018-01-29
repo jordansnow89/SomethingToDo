@@ -4,6 +4,9 @@ import { connect } from "react-redux"
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
+import {Card, CardHeader, CardText, CardTitle} from 'material-ui/Card';
+import "./userList.css"
+import swal from 'sweetalert'
 
 import { retrieveUserList } from "../../ducks/user"
 import { removeEventFromList } from "../../ducks/user"
@@ -26,6 +29,9 @@ class UserList extends Component{
     handleRemove(val){
 
         this.props.removeEventFromList(val, this.props.user.user.userid)
+        swal({
+            text: "Event Removed!"
+        })
 
     }
 
@@ -51,16 +57,23 @@ class UserList extends Component{
             
              {this.props.user.isLoading && (  <div> <CircularProgress size={80} thickness={5} /></div>)} 
              
-            <div> 
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center"}}> 
                { user.userList && user.userList.map((event, index) =>
-                (   <div key={index}>
-                    <div> EVENT NAME: {event.name} </div>
-                    { event.imageurl ? <img src={`${event.imageurl}`} alt="event_image"/> : null}
-                    <div> EVENT DESCRIPTION: {event.description} </div>
-                    <div> EVENT DATE: {event.start}</div>
-                    <RaisedButton style={style} label="Remove From Favorites"  secondary="true" onClick={ () => this.handleRemove(event.selection_id)}/>
-                    </div>
+                (<div key={index}>
+                    <Card style={{width: "80vw", marginBottom: "10px"}}>
+                    <CardHeader actAsExpander={true} showExpandableButton={true}>
 
+                    <div style={{ padding: "10px"}}> EVENT NAME: {event.name} </div>
+                    { event.imageurl ? <img src={`${event.imageurl}`} alt="event_image"/> : null}
+                    </CardHeader>
+                    <CardText expandable={true}>
+                    <div className="descriptioncontainer"> Description: {event.description} </div>
+                    <div style={{ padding: "10px"}}> Date: {event.start}</div>
+                    <RaisedButton style={style} label="Remove From Favorites"  secondary="true" onClick={ () => this.handleRemove(event.selection_id)}/>
+                    </CardText>
+                    </Card>
+                </div>
+            
 
 
 

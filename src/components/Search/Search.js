@@ -34,8 +34,11 @@ class Search extends Component {
     }
 
     handleAlert(){
-        swal("Please log in to add to favorites.")
-        }
+        swal({
+            text:"Please log in to add to favorites.",
+            icon: "error"
+        })
+    }
     
 
 render() {
@@ -51,7 +54,7 @@ const eventList = this.props.events.events.events
         <br/>
 
             <div className="eventContent">
-                {this.props.events.isLoading && ( <div> <CircularProgress size={150} thickness={5} /></div>)}    
+                {this.props.events.isLoading && ( <div style={{padding: "10px"}}> <CircularProgress size={150} thickness={5} /></div>)}    
                 {eventList && eventList.map((event, index) =>
                  ( 
                      
