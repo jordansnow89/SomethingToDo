@@ -34,14 +34,15 @@ render(){
 
 
     return(
-    <div>
+    <div className="pagecontent"style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
 
         <h2> Your Profile </h2>
         <h4> { user.name ? `Hello, ${user.name}` : null }</h4>
     { user.userid ?
-        <div className="profilecontainer">
+    <div className="profilecontainer" style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
+        <div classame="profilebox">
             <div> 
-                { user.profile_picture ? <img src={`${user.profile_picture }`} alt="default profile photo"/> : null} 
+                { user.profile_picture ? <img className="profilepic"src={`${user.profile_picture }`} alt=""/> : null} 
             <div className="profileinfo">
                 { user.name ? <div> {user.name} </div> : null  }
             </div>
@@ -59,6 +60,8 @@ render(){
 
 
         </div>
+    </div> 
+
          : <div className="loginContainer">
               Please Log In  
          <a href={process.env.REACT_APP_LOGIN}>

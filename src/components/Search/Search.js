@@ -27,12 +27,16 @@ class Search extends Component {
     handleAdd(val) {
         const userid = this.props.user.user.userid
         this.props.addEventToProfile( userid , val);
-        swal("Event Added!")
+        swal({
+            text:"Event Added!",
+            icon: "success"
+        })
     }
 
     handleAlert(){
         swal("Please log in to add to favorites.")
         }
+    
 
 render() {
 const eventList = this.props.events.events.events

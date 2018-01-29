@@ -1,0 +1,19 @@
+.pagecontent{
+    height: 100%;
+}
+
+.profilecontainer{
+    border: 1px solid #666A73;
+    width: 60%;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1.5px;
+}
+
+.profilebox {
+    
+}
+
+.profilepic{
+    width: 40%;
+}
