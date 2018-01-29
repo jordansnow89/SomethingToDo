@@ -61,7 +61,7 @@ const eventList = this.props.events.events.events
                 </CardHeader>
                 <CardText expandable={true}>
                 <div className="eventDate">{`Date: ${event.start.local} `}</div>
-                <div> EVENT DESCRIPTION: {event.description.text} </div>
+                <div className="descriptioncontainer">  <p className="description">Description:</p> <div className="descriptionbox"> {event.description.text}</div> </div>
                  {/* <button onClick={ () => this.props.user.user.userid ? this.handleAdd(event) : this.handleAlert() }> ADD </button> */}
                  <RaisedButton label="Add To Your Favorites" secondary={true} style={{ margin: "10px"}} onClick={ () => this.props.user.user.userid ? this.handleAdd(event) : this.handleAlert() }/>
                  </CardText>
