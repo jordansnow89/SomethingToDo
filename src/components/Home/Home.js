@@ -96,7 +96,7 @@ class Home extends Component {
     return (
         <div className="homeBody">
           <div>
-            <h2 style={{color: "rgb(255, 87, 34"}}>Lets Do  Something!</h2>
+            <h2 style={{color: "rgb(255, 87, 34"}}>Let's Do  Something!</h2>
           </div>
           <div className="imageslider">
           <Slider {...settings}>

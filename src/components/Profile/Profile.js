@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux"
 import  { Link } from "react-router-dom"
 
+import "./Profile.css"
+
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -37,6 +39,7 @@ render(){
         <h2> Your Profile </h2>
         <h4> { user.name ? `Hello, ${user.name}` : null }</h4>
     { user.userid ?
+        <div className="profilecontainer">
             <div> 
                 { user.profile_picture ? <img src={`${user.profile_picture }`} alt="default profile photo"/> : null} 
             <div className="profileinfo">
@@ -45,6 +48,7 @@ render(){
             <div className="profileinfo">
                 { user.email ? <div> {user.email } </div> : null }
             </div>
+        </div>
             <Link to={`/edit/${user.userid}`}>
             <RaisedButton label="Edit Profile" secondary={true} style={style} />
             </Link>

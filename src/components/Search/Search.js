@@ -7,6 +7,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardHeader, CardText, CardTitle} from 'material-ui/Card';
+import swal from 'sweetalert'
 
 import { retrieveEvents  } from "../../ducks/event";
 import { addEventToProfile  } from "../../ducks/event";
@@ -26,10 +27,11 @@ class Search extends Component {
     handleAdd(val) {
         const userid = this.props.user.user.userid
         this.props.addEventToProfile( userid , val);
+        swal("Event Added!")
     }
 
     handleAlert(){
-        alert("Please log in to add events")
+        swal("Please log in to add to favorites.")
         }
 
 render() {
