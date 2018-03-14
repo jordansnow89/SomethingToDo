@@ -25,8 +25,8 @@ massive(CONNECTION_STRING)
   .then(db => {
     app.set("db", db);
   })
-  .catch(console.log);
-
+  .catch(console.log); 
+  
 app.use( express.static( `${__dirname}/../build` ) );
 app.use(json());
 app.use(cors());
