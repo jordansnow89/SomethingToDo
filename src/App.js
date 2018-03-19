@@ -121,12 +121,7 @@ class App extends Component {
     <MenuItem primaryText="Contact Us" onClick={() =>this.props.history.push("/contact")}/>
     </Menu>
   </Popover>
-    
-  
-        {routes} 
-  
-
-  
+    {routes} 
   </div>
   <Footer/>
   </div>
