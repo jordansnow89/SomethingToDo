@@ -1,12 +1,13 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom"
 
-import Home from  "./components/Home/Home";
-import Login from  "./components/Login/Login";
-import Profile from  "./components/Profile/Profile";
-import Search from  "./components/Search/Search";
-import Userlist from  "./components/UserList/UserList";
-import EditProfile from  "./components/Profile/EditProfile";
+//IMPORT COMPONENTS
+import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
+import Profile from "./components/Profile/Profile";
+import Search from "./components/Search/Search";
+import Userlist from "./components/UserList/UserList";
+import EditProfile from "./components/Profile/EditProfile";
 import Contact from "./components/Contact/Contact"
 
 
