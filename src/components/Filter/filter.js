@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 
+//FILE IMPORTS
 import "./filter.css"
+
+//IMPORT MATERIAL UI COMPONENTS
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
@@ -9,6 +12,7 @@ import TextField from 'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 
+//REDUX IMPORTS
 import { retrieveEvents  } from "../../ducks/event";
 
 class Filter extends Component {
@@ -68,7 +72,7 @@ class Filter extends Component {
             selectedDate: date,
             date: date.value
         })
-        console.log(`Selected Date: ${date}`);
+        
     }
 
     handlePrice(price){
@@ -86,13 +90,11 @@ class Filter extends Component {
 
       handleChange = (selectedOption) => {
         this.setState({ selectedOption });
-        console.log(`Selected: ${selectedOption.label}`);
       }
 
       
 
 render(){
-    console.log(this.state)
     const eventList = this.props.events.events.events
     const { selectedCategory, selectedDistance, selectedDate, selectedPrice } = this.state;
     // const categoryValue = selectedCategory && selectedCategory.value;
@@ -120,6 +122,7 @@ render(){
     
     
     return(
+        //FITLER CARD
 <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>    
          
     <br/>
@@ -127,7 +130,6 @@ render(){
     <Card>
     <CardHeader
       title={<h3>Filters</h3>}
-    //   subtitle="Subtitle"
       actAsExpander={true}
       showExpandableButton={true}
         style={{textAlign: "left"}}

@@ -3,20 +3,20 @@ import { connect } from "react-redux";
 import axios from "axios"
 // import { Link } from "react-router-dom";
 
-
+//FILE IMPORTS
 import "./Home.css"
 import Slider from "react-slick"
 import SliderImage1 from '../../images/img1.jpg'
 import SliderImage2 from '../../images/img2.jpg'
 import SliderImage3 from '../../images/img3.jpg'
 
-
+//MATERIAL UI IMPORTS
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 
-
+//REDUX IMPORTS
 import { retrieveUser } from "../../ducks/user";
 import { retrieveEvents  } from "../../ducks/event";
 
@@ -34,8 +34,9 @@ class Home extends Component {
   }
   componentDidMount() {
     this.props.retrieveUser();
+
+    //USING GEOLOCATOIN TO GET USER'S CITY AND STATE
     navigator.geolocation.getCurrentPosition((position) => {
-     console.log(position.coords.latitude, position.coords.longitude);
     axios.get(`https://us1.locationiq.org/v1/reverse.php?key=91a4fb428d8243&lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`)
     .then(response  => {this.setState({searchTerm: `${response.data.address.city}, ${response.data.address.state}`} ); console.log(response)
     }
@@ -64,6 +65,8 @@ class Home extends Component {
 
 
   render() {
+
+    //SETTINGS FOR IMAGE SLIDER
       const settings = {
         infinite: true,
         speed: 500,

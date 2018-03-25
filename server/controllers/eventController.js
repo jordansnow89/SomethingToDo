@@ -2,9 +2,8 @@ const axios = require("axios")
 require("dotenv").config();
 
 module.exports = {
-    
+    //API CALL TO EVENBRITE TO GRAB EVENT DATA DEPENDING ON WHAT THE QUERY IS
      getEventData: (req, res) => {
-         console.log(req.query)
 
         let url = `https://www.eventbriteapi.com/v3/events/search/?location.address=${req.query.city}`
         let token = `&token=${process.env.EVENTBRITE_API_KEY}`

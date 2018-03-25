@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux"
 import  { Link } from "react-router-dom"
 
+//FILE IMPORTS
 import "./Profile.css"
 
+//MATERIAL UI IMPORTS
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 
+//REDUX IMPORTS
 import { retrieveUser } from "../../ducks/user"
 
 
@@ -30,7 +33,6 @@ render(){
     const style = {
         margin: 12,
       };
-
 
 
     return(
