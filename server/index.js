@@ -11,7 +11,7 @@ const eventController = require("./controllers/eventController");
 const userController = require("./controllers/userController");
 
 const {
-    AUTH_DOMAIN,
+  AUTH_DOMAIN,
   CLIENT_SECRET,
   CLIENT_ID,
   PORT,
@@ -25,15 +25,9 @@ massive(CONNECTION_STRING)
   .then(db => {
     app.set("db", db);
   })
-<<<<<<< HEAD
   .catch(console.log);
 
 app.use(express.static(`${__dirname}/../build`));
-=======
-  .catch(console.log); 
-  
-app.use( express.static( `${__dirname}/../build` ) );
->>>>>>> 1b00fa3c2711d405ffe467fce7814c55f55f3452
 app.use(json());
 app.use(cors());
 app.use(session({
